@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> {{ title }} </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'blog/main.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+    <a class="navbar-brand" href="{% url 'blog-home' %}"><b>itNews</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'blog-home' %}">Bosh sahifa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'blog-contact' %}">Biz haqimizda</a>
+            </li>
+        </ul>
+    </div>
+<div class="navbar-nav">
+    {% if user.is_authenticated %}
+        <a href="{% url 'news-add' %}" class="btn btn-outline-secondary mr-2">Maqola qo'sish</a>
+        <a href="{% url 'profile' %}" class="btn btn-outline-secondary mr-2">Profil</a>
+        <a href="{% url 'exit' %}" class="btn btn-outline-secondary">Chiqish</a>
+    {% else %}
+        <a href="{% url 'reg' %}" class="btn btn-outline-secondary mr-2">Ro'yxatdan o'tish</a>
+        <a href="{% url 'user' %}" class="btn btn-outline-secondary">Kirish</a>
+    {% endif %}
+</div>
+</nav>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-8">
+    {% if messages %}
+        {% for mess in messages %}
+            <div class="alert alert-success">
+                {{ mess }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    
+    {% block main_section %}
+    {% endblock main_section %}
+    </div>
+
+<aside class="col-md-4">
+    <div class="p-3">
+        {% block aside_news_section %}
+        {% endblock aside_news_section %}
+    </div>
+<div class="p-3 mb-3">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" class="img-thumbnail mb-2">
+        <button class="btn btn-warning">O'rganishni boshlash</button>
+        </a>
+</div>
+</aside>
+</div>
+</main>
+           <footer>
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">Yuqoriga</a>
+                </p>
+                <h5>Saytimizga hush kelibsiz</h5>
+                <p>Bu satda yangimisiz?<a href="/">Bosh sahifaga</a> Biz haqimizda qiziqasizmi? <a href="{% url 'blog-contact' %}">Bu yerni bosing</a>.</p>
+            </div>
+        </footer>
+
+</body>
+</html>

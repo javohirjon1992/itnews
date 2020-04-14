@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0KHQsdGA0L7RgSDQv9Cw0YDQvtC70Y8g0L3QsCAxMjcuMC4wLjE6ODAwMA==?=
+From: webmaster@localhost
+To: javohirjon-1992@mail.ru
+Date: Sun, 12 Apr 2020 07:01:59 -0000
+Message-ID: <158667491991.7552.3744576592342149999@xn--kompyuter--eui3d>
+
+
+Вы получили это письмо, потому что вы (или кто-то другой) запросили восстановление пароля от учётной записи на сайте 127.0.0.1:8000, которая связана с этим адресом электронной почты.
+
+Пожалуйста, перейдите на эту страницу и введите новый пароль:
+
+http://127.0.0.1:8000/password_reset_confirm/MQ/5fl-24b2134f19df8b2cc30f
+
+Your username, in case you’ve forgotten: admin
+
+Спасибо, что используете наш сайт!
+
+Команда сайта 127.0.0.1:8000
+
+
+
+-------------------------------------------------------------------------------

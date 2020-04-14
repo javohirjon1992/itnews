@@ -1,0 +1,63 @@
+
+{% extends 'blog/main.html' %}
+{% block main_section %}
+<h2>{{ view.kwargs.username }} ning barcha maqolalari </h2>
+<h4>Maqolalar soni {{ page_obj.paginator.count }}</h4>
+    {% for post in news %}
+    <div class="alert alert-light">
+        <h3> {{ post.title }} </h3>
+        <p> {{ post.text|striptags|truncatechars:200 }} </p>
+        <div class="row">
+            <div>
+                {% if post.avtor.profile.img %}
+                <img src="{{ post.avtor.profile.img.url }}" alt=" post.avtor " class="user_image">
+                {% else %}
+                <img src="/pictures/default.jpg" alt=" post.avtor " class="user_image">
+                {% endif %}
+            </div>
+                <div class="mt-2">
+                    <span class="text-muted">Chop etilgan vaqt: {{ post.date|date:"d.m.Y | H:i:s" }} </span>
+                       <p> <b>Muallif:</b> <a href="{% url 'user-news' post.avtor %}">{{ post.avtor }}</a></p>
+                </div>
+        </div>
+        <a href="{% url 'news-detail' post.id %}" class="btn btn-outline-warning">Batafsil</a>
+    </div>
+    {% endfor %}
+
+
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn btn-outline-warning">Boshiga</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-warning">Oldingi</a>
+        {% endif %}
+        
+         <!--Boshlanishi Oldingi  2 3 4 5 Keyingi oxiri tugmalari-->
+         {% for num in page_obj.paginator.page_range %}
+           {% if num == page_obj.number %}
+            <button class="btn btn-warning">{{ num }}</button>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}" class="btn btn-outline-warning">{{ num }}</a>
+           {% endif %}
+         {% endfor %}
+
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-warning">Keyingi</a>
+            <a href="?page={{ page_obj.paginator_num_pages }}" class="btn btn-outline-warning">Oxiri</a>
+        {% endif %}
+
+    {% endif %}
+    
+
+{% endblock main_section %}
+
+{% block aside_news_section %}
+<h3><b>5 ta o'yinlar uchun fremeworklar</b></h3>
+    <img src="https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/python2-header.png?itok=tEvOVo4A" class="img-thumbnail mb-1">
+    <p> I explained how to use Python to create a simple, text-based dice game. This time, I'll demonstrate how to use the Python module Pygame to create a graphical game. It will take several articles to get a game that actually does anything, but by the end of the series, you will have a better understanding of how to find and learn new Python modules and how to build an application from the ground up.
+    </p>
+    <a href="https://dasturchi.uz/plangs/dasturchilar-uchun-10ta-onlayn-kodlash-musobaqalari/" target="_blank">
+        <button class="btn btn-warning">Batafsil</button>
+    </a>       
+{% endblock aside_news_section %}
+

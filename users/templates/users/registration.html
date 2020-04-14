@@ -1,0 +1,24 @@
+{% extends 'blog/main.html' %}
+{% load crispy_forms_tags %}
+{% block main_section %}
+    <div class="form-section">
+        <h2>Ro'yxatdan o'tkazish</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-outline-warning">Ro'yxatdan o'tish</button>
+        </form>
+        <hr>
+        Ro'yxatdan o'tganmisiz? <a href="{% url 'user' %}">Shaxsiy kabinetga kirish</a>
+    </div>
+{% endblock main_section %}
+
+{% block aside_news_section %}
+    <h3><b>5 ta o'yinlar uchun fremeworklar</b></h3>
+    <img src="https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/python2-header.png?itok=tEvOVo4A" class="img-thumbnail mb-1">
+    <p> I explained how to use Python to create a simple, text-based dice game. This time, I'll demonstrate how to use the Python module Pygame to create a graphical game. It will take several articles to get a game that actually does anything, but by the end of the series, you will have a better understanding of how to find and learn new Python modules and how to build an application from the ground up.
+    </p>
+    <a href="https://dasturchi.uz/plangs/dasturchilar-uchun-10ta-onlayn-kodlash-musobaqalari/" target="_blank">
+        <button class="btn btn-warning">Batafsil</button>
+    </a>
+{% endblock aside_news_section %}
